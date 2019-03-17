@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UPLOAD</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+<button onclick="dateCal()"> click</button>
+<script type="text/javascript">
+function dateCal(){
+var dt = new Date();
+
+m =dt.getMonth() 
+if(m<10){
+m = "0"+String(parseInt(m)+1)
+}
+else{
+	String(parseInt(m)+1)
+}
+
+d = parseInt(dt.getDate())
+if(d<10){
+d = "0"+String(parseInt(d))
+}
+else{
+	String(parseInt(d)+1)
+}
+var time = d + "-" + m + "-" + String(dt.getFullYear()) + ":" + dt.getHours() + "-" + dt.getMinutes() + "-" + dt.getSeconds();
+return time;
+}
+
+</script>
+</body>
+</html>

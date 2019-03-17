@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UPLOAD</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+<input type="number" placeholder="actId" id="actId">
+<input type="text" placeholder="username" id="username">
+<input type="text" placeholder="caption" id="caption">
+<select>
+	<option value="Army" selected>Army</option>
+	<option value="Pets">Pets</option>
+	<option value="Old People">Old People</option>
+	<option value="Homeless">Pets</option>
+	<option value="plants">plants</option>
+	<option value="disaster">disaster</option>
+</select>
+<input type='file' id="inp">
+<img id="img" height="150" src="{{ url_for('static', filename='images/upload.png') }}">
+<button id="upload">UPLOAD</button>
+<p id="b64" style="color:white"></p>
+<script type="text/javascript">
+
+$(document).ready(function(event) {
+	$("#inp").change(function(e){
+		getBase64(e.target.files[0])
+	});
+	
+	$("#upload").click(function(e){
+		console.log( $("#b64").text());
+	});
+});
+	
+function getBase64(file) {
+	var encoded = null;
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.addEventListener("load" , function(e){
+      encoded = reader.result.replace(/^data:(.*;base64,)?/, '');
+      if ((encoded.length % 4) > 0) {
+        encoded += '='.repeat(4 - (encoded.length % 4));
+      }
+      document.getElementById("img").src = reader.result;
+      document.getElementById("b64").innerHTML = reader.result;
+  });
+}
+
+</script>
+</body>
+</html>
